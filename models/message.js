@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   message.init({
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
+    method: DataTypes.STRING,
     date: DataTypes.INTEGER,
     note: DataTypes.STRING,
     user_id: DataTypes.STRING
