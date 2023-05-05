@@ -6,7 +6,12 @@ const { message} = require('../models');
 
 // Create a new message
 router.get('/', async(req,res)=>{
-  res.json({message: "Success!"})
+  try {
+    const savedMessage = await message.findAll(req.body);
+    res.status(201).json(savedMessage);
+  } catch (error) {
+    res.status(500).json({ message: 'Error getting message', error });
+  }
 })
 
 router.post('/', async (req, res) => {
