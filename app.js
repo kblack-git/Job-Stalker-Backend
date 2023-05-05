@@ -16,6 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-use.app('/messages', messagesRouter);
+app.use('/messages', messagesRouter);
 
 module.exports = app;
