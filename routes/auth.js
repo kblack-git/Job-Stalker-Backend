@@ -28,14 +28,13 @@ router.post("/login", async (req, res, next) => {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+    const isPasswordValid = await bcrypt.compare(req.body.password, myUser.password);
 
     if (!isPasswordValid) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '6h' });
-
+    const token = jwt.sign({ id: myUser.id }, 'your_jwt_secret', { expiresIn: '6h' });
     res.status(200).json({message: "Successful Login!", token:token });
   } catch (error) {
     res.status(500).json({ error: error.message });
