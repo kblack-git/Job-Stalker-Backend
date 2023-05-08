@@ -24,7 +24,7 @@ router.post("/login", async (req, res, next) => {
   try {
     const myUser = await user.findOne({ where: { username: req.body.username } });
 
-    if (!user) {
+    if (!myUser) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
@@ -36,7 +36,7 @@ router.post("/login", async (req, res, next) => {
 
     const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '6h' });
 
-    res.status(200).json({ token });
+    res.status(200).json({message: "Successful Login!", token:token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
