@@ -24,5 +24,18 @@ router.get('/', async(req,res)=>{
       res.status(500).json({ message: 'Error creating message', error });
     }
   });
+
+  router.get("/:id/del", function(req, res, next) {
+    Role.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(result) {
+      res.json({
+        status: 1,
+        data: result
+      });
+    }).catch(next);
+  });
   
   module.exports = router;
