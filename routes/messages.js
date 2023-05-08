@@ -25,8 +25,19 @@ router.get('/', async(req,res)=>{
     }
   });
 
+  router.get("/delall", function(req, res, next) {
+    message.destroy({
+      where: {},
+      truncate:true
+    }).then(function(result) {
+      res.json({
+        status: 1,
+        data: result
+      });
+    }).catch(next);
+  });
   router.get("/:id/del", function(req, res, next) {
-    Role.destroy({
+    message.destroy({
       where: {
         id: req.params.id
       }
@@ -37,5 +48,6 @@ router.get('/', async(req,res)=>{
       });
     }).catch(next);
   });
-  
+
+
   module.exports = router;
