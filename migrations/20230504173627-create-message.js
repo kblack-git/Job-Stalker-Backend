@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       note: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       user_id: {
         type: Sequelize.INTEGER
