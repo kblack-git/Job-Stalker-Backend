@@ -13,7 +13,22 @@ router.get('/', async(req,res)=>{
   } catch (error) {
     res.status(500).json({ message: 'Error getting message', error });
   }
-})
+});
+
+// Get a specific message by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const savedMessage = await message.findByPk(req.params.id); 
+
+    if (!savedMessage) {
+      res.status(404).json({ message: 'Message not found' });
+    } else {
+      res.json(savedMessage);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error retrieving message', error });
+  }
+});
 
 // router.post('/', authenticate,async (req, res) => {
   router.post('/', async (req, res) => {
