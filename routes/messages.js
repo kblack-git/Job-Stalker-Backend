@@ -16,9 +16,16 @@ router.get('/', async(req,res)=>{
 });
 
 // Get a specific message by ID
-router.get('/:id', async (req, res) => {
+router.get('/:user_id', async (req, res) => {
   try {
-    const savedMessage = await message.findByPk(req.params.id); 
+    
+    const savedMessage = await message.findAll(
+      {
+        where:{
+        user_id: req.params.user_id
+      }
+      }
+    )
 
     if (!savedMessage) {
       res.status(404).json({ message: 'Message not found' });
